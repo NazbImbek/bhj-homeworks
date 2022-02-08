@@ -9,6 +9,9 @@ for (let tag of tags) {
       tag.querySelector('.tooltip').remove();
     } else {
       tag.insertAdjacentHTML('beforeEnd', `<div class="tooltip tooltip_active">${title}</div>`);
+      let tooltip = tag.querySelector('.tooltip');
+      tooltip.style.top = Number(tag.getBoundingClientRect().top) + 19 + "px";
+      tooltip.style.left = tag.getBoundingClientRect().left + "px";
     }
   }
 }
