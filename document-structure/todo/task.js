@@ -1,25 +1,25 @@
-const tasks__add = document.getElementById('tasks__add');
-const task__input = document.getElementById('task__input');
+const tasksAdd = document.getElementById('tasks__add');
+const taskInput = document.getElementById('task__input');
 
-tasks__add.addEventListener('click', handle);
+tasksAdd.addEventListener('click', handle);
 
 function add () {
-  const tasks__list = document.getElementById('tasks__list');
-  tasks__list.insertAdjacentHTML('afterEnd', `<div class="task"><div class="task__title">${task__input.value}</div><a href="#" class="task__remove">&times;</a></div>`);
+  const tasksList = document.getElementById('tasks__list');
+  tasksList.insertAdjacentHTML('afterEnd', `<div class="task"><div class="task__title">${task__input.value}</div><a href="#" class="task__remove">&times;</a></div>`);
 }
 
 function handle(e) {
   e.preventDefault();
-  if (task__input.value !== ''){ 
+  if (taskInput.value.trim() !== '') {
   add ();
-  task__input.value = '';
-  } 
+  taskInput.value = '';
+  }
   
-  const task__remove = document.querySelectorAll('.task__remove');
-  task__remove.forEach( item => {
+  const taskRemove = document.querySelectorAll('.task__remove');
+  for (let item of taskRemove) {
     item.addEventListener('click', del); 
     function del(){
       item.closest('.task').remove();
     }
-  })  
+  }  
 }
