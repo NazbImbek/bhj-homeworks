@@ -5,7 +5,7 @@ tasksAdd.addEventListener('click', handle);
 
 function add () {
   const tasksList = document.getElementById('tasks__list');
-  tasksList.insertAdjacentHTML('afterEnd', `<div class="task"><div class="task__title">${task__input.value}</div><a href="#" class="task__remove">&times;</a></div>`);
+  tasksList.insertAdjacentHTML('beforeEnd', `<div class="task"><div class="task__title">${task__input.value}</div><a href="#" class="task__remove">&times;</a></div>`);
 }
 
 function handle(e) {
