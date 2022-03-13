@@ -26,19 +26,18 @@ function inBusket(e) {
   const product = e.target.closest('.product');
   const quantityValue = Number(e.target.parentNode.querySelector('.product__quantity-value').textContent);
 
-  for (let item of cartProducts.children) {
+  let elInBasket = Array.from(cartProducts.children).find(item => item.dataset.id === id);
 
-    if (item.dataset.id === id) {
-      let productCount = item.querySelector('.cart__product-count');
-        productCount.textContent = Number(productCount.textContent) + quantityValue;
-        return false;
-        }
-    }
-
+  if (elInBasket) {
+    let productCount = elInBasket.querySelector('.cart__product-count');
+    productCount.textContent = Number(productCount.textContent) + quantityValue;
+  }else {
     const img = product.querySelector('.product__image').src;
-    
-    cartProducts.insertAdjacentHTML('beforeEnd', `<div class="cart__product" data-id="${id}">
-                                <img class="cart__product-image" src="${img}">
-                                <div class="cart__product-count">${product.querySelector('.product__quantity-value').textContent}</div>
-                            </div>`);
+
+    cartProducts.insertAdjacentHTML('beforeEnd', 
+    `<div class="cart__product" data-id="${id}">
+        <img class="cart__product-image" src="${img}">
+        <div class="cart__product-count">${product.querySelector('.product__quantity-value').textContent}</div>
+    </div>`);
+  }
 }
