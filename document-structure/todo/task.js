@@ -1,10 +1,10 @@
 const tasksAdd = document.getElementById('tasks__add');
 const taskInput = document.getElementById('task__input');
+const tasksList = document.getElementById('tasks__list');
 
 tasksAdd.addEventListener('click', handle);
 
-function add () {
-  const tasksList = document.getElementById('tasks__list');
+function add () { 
   tasksList.insertAdjacentHTML('beforeEnd', `<div class="task"><div class="task__title">${task__input.value}</div><a href="#" class="task__remove">&times;</a></div>`);
 }
 
@@ -15,11 +15,13 @@ function handle(e) {
   taskInput.value = '';
   }
   
-  const taskRemove = document.querySelectorAll('.task__remove');
-  for (let item of taskRemove) {
-    item.addEventListener('click', del); 
-    function del(){
-      item.closest('.task').remove();
-    }
-  }  
 }
+
+tasksList.addEventListener('click', del); 
+  function del(e){
+    let item = e.target;
+
+    if (item.classList.contains(`task__remove`) ) {
+      item.closest(`.task`).remove();
+    }
+  }
